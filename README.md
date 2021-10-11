@@ -13,6 +13,7 @@ chmod +x ss.sh
 ```
 
 运行后会提示下面内容，直接回车即可（如果没反应就再敲下回车），然后就开始等待了。
+```
 #############################################################
 # One click Install Shadowsocks(Python)
 # Intro: http://blog.whsir.com
@@ -20,7 +21,7 @@ chmod +x ss.sh
 # Author: whsir
 #
 #############################################################
-
+```
 Please input password for shadowsocks:
 (Default password: whsir):
 安装完成后显示内容如下：
@@ -100,3 +101,8 @@ yum -y install http://dl.fedoraproject.org/pub/epel/6/x86_64/Packages/p/python-p
 然后在执行
 
 ./ss.sh 2>&1 | tee shadowsocks.log
+
+
+# shawdrock 下载
+链接: https://pan.baidu.com/s/1KWeYTlpUZ5Y50hmFTRXnLQ 提取码: 58i8 
+--来自百度网盘超级会员v5的分享
