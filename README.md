@@ -1,49 +1,17 @@
 # vpn
 
 
-首先连接到你的VPS，怎么连接就不用我说了吧，连接的时候注意下你自己的端口和密码即可，密码忘了就重新生成个。
-
+# 安装
 以root用户运行以下命令，一行一行的粘贴进去即可：
 
 ```
-yum -y install wget
-wget --no-check-certificate http://blog.whsir.com/uploads/ss.sh
-chmod +x ss.sh
-./ss.sh 2>&1 | tee shadowsocks.log
+wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh
+chmod +x shadowsocks-all.sh
+./shadowsocks-all.sh 2>&1 | tee shadowsocks-all.log
 ```
 
-运行后会提示下面内容，直接回车即可（如果没反应就再敲下回车），然后就开始等待了。
-```
-#############################################################
-# One click Install Shadowsocks(Python)
-# Intro: http://blog.whsir.com
-#
-# Author: whsir
-#
-#############################################################
-```
-Please input password for shadowsocks:
-(Default password: whsir):
-安装完成后显示内容如下：
-
-Congratulations, ss install completed!
-Your Server IP:your_server_ip
-Your Server Port:443
-Your Password:your_password
-Your Local IP:127.0.0.1
-Your Local Port:1080
-Your Encryption Method:aes-256-cfb
-
-Welcome to visit:blog.whsir.com
-Enjoy it!
-
-卸载方法：
-
-./ss.sh uninstall
-
-多端口多密码配置：
-
-#vi /etc/shadowsocks.json
+修改配置
+`vi /etc/shadowsocks-python/config.json`
 
 按i粘贴以下配置（原有内容需要删除）
 ```
@@ -69,38 +37,47 @@ timeout：超时时长，这里默认300。
 
 最后要记得重启下shadowsocks
 
-需要用到的命令：
-启动：service shadowsocks start
-停止：service shadowsocks stop
-重启：service shadowsocks restart
-状态：service shadowsocks status
+# 常用命令
+start 启动 stop 停止 restart 重启 status 状态
 
- 
+Shadowsocks-libev 版：
+```
+/etc/init.d/shadowsocks-libev start
+/etc/init.d/shadowsocks-libev stop
+/etc/init.d/shadowsocks-libev restart
+/etc/init.d/shadowsocks-libev status
+```
+Shadowsocks-Python 版：
+```
+/etc/init.d/shadowsocks-python start
+/etc/init.d/shadowsocks-python stop
+/etc/init.d/shadowsocks-python restart
+/etc/init.d/shadowsocks-python status
+```
+ShadowsocksR 版：
+```
+/etc/init.d/shadowsocks-r start
+/etc/init.d/shadowsocks-r stop
+/etc/init.d/shadowsocks-r restart
+/etc/init.d/shadowsocks-r status
+```
+Shadowsocks-Go 版：
+```
+/etc/init.d/shadowsocks-go start
+/etc/init.d/shadowsocks-go stop
+/etc/init.d/shadowsocks-go restart
+/etc/init.d/shadowsocks-go status
+```
+如何卸载
+运行如下命令，根据提示，选择对应版本卸载
+`./shadowsocks-all.sh uninstall`
 
-最近有大量朋友反映，在Centos6上安装会报错
+# BBR加速
 
-报错内容如下：
+使用root用户登录，运行以下命令：
+`wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh`
+安装完成后，脚本会提示需要重启 VPS，输入 y 并回车后重启。
 
-Installed /usr/lib/python2.6/site-packages/setuptools-33.1.1-py2.6.egg
-Processing dependencies for setuptools==33.1.1
-Finished processing dependencies for setuptools==33.1.1
-Searching for pip
-Reading http://pypi.python.org/simple/pip/
-Couldn't find index page for 'pip' (maybe misspelled?)
-Scanning index of all packages (this may take a while)
-Reading http://pypi.python.org/simple/
-No local packages or download links found for pip
-error: Could not find suitable distribution for Requirement.parse('pip')
-
-pip install failed! Please visit blog.whsir.com and contact.
-
-解决办法：
-
-yum -y install http://dl.fedoraproject.org/pub/epel/6/x86_64/Packages/p/python-pip-7.1.0-1.el6.noarch.rpm
-
-然后在执行
-
-./ss.sh 2>&1 | tee shadowsocks.log
 
 
 # shawdrock 下载
